@@ -55,8 +55,21 @@ describe Event do
       end
     end
   end
+
   describe "score" do
-    it "should score by type" do
+    let(:event_actions) { Event::ACTION_SCORE_MAP.keys }
+    let(:event) {
+      Event.new.tap do |event|
+        event.actor_id = 2
+        event.checksum = "111"
+      end
+      }
+
+    it "should score by action" do
+      event_actions.each do |action|
+        event.action = action
+        event.score.should eql( Event::ACTION_SCORE_MAP[action] )
+      end
     end
   end
 end

@@ -1,5 +1,15 @@
 require 'digest/sha1'
 class Event < ActiveRecord::Base
+  ACTION_SCORE_MAP = {
+    "CommitCommentEvent" => 2,
+    "IssueCommentEvent" => 2,
+    "IssuesEvent" => 3,
+    "WatchEvent" => 1,
+    "PullRequestEvent" => 5,
+    "PushEvent" => 7,
+    "FollowEvent" => 1,
+    "CreateEvent" => 3
+  }
   DEBUG = nil
 
   belongs_to :actor
@@ -34,5 +44,9 @@ class Event < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def score
+    Event::ACTION_SCORE_MAP[action]
   end
 end
