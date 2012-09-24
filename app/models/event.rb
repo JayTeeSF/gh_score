@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   belongs_to :actor
   attr_accessible :action, :checksum, :recorded_at, :url
   validates_uniqueness_of :checksum
+  validates_presence_of :checksum
+  validates_presence_of :actor_id
 
   def self.create_for actor, options = {}
     event_records = options[ :event_records ] ||

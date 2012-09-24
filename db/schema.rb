@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923213815) do
+ActiveRecord::Schema.define(:version => 20120924033640) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
@@ -22,14 +22,15 @@ ActiveRecord::Schema.define(:version => 20120923213815) do
   create_table "events", :force => true do |t|
     t.string   "action"
     t.string   "url"
-    t.integer  "actor_id"
+    t.integer  "actor_id",                    :null => false
     t.text     "body"
-    t.string   "checksum"
+    t.string   "checksum",    :default => "", :null => false
     t.datetime "recorded_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "events", ["actor_id"], :name => "index_events_on_actor_id"
+  add_index "events", ["checksum"], :name => "index_events_on_checksum", :unique => true
 
 end
