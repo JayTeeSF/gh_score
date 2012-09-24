@@ -1,0 +1,4 @@
+irb -r "./lib/github/client.rb"
+#> ...
+require './spec/support/file_responder.rb'
+Github::Client.fetch "JayTeeSF", FileResponder

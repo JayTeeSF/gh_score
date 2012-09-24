@@ -1,0 +1,2 @@
+rails g model event action:string url:string actor:references checksum:string recorded_at:datetime
+rails g model actor name
