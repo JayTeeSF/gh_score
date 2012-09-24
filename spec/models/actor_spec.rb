@@ -17,7 +17,6 @@ describe Actor do
       lambda do
         Actor.import username, :responder => FileResponder
       end.should change(Actor, :count).by(0)
-      puts "expecting: #{expected_final_event_count}"
       Event.count.should eql( expected_final_event_count )
     end
 
