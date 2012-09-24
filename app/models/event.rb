@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   attr_accessible :action, :checksum, :recorded_at, :url
   validates_uniqueness_of :checksum
   validates_presence_of :checksum
+  validates_presence_of :action
   validates_presence_of :actor_id
 
   def self.create_for actor, options = {}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924033640) do
+ActiveRecord::Schema.define(:version => 20120924040059) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 20120924033640) do
   end
 
   create_table "events", :force => true do |t|
-    t.string   "action"
+    t.string   "action",      :default => "", :null => false
     t.string   "url"
     t.integer  "actor_id",                    :null => false
     t.text     "body"
