@@ -8,8 +8,9 @@ class Event < ActiveRecord::Base
     "PullRequestEvent" => 5,
     "PushEvent" => 7,
     "FollowEvent" => 1,
-    "CreateEvent" => 3
+    "CreateEvent" => 3,
   }
+  # "ForkEvent" => 1, #unk
   DEBUG = nil
 
   belongs_to :actor
@@ -47,6 +48,6 @@ class Event < ActiveRecord::Base
   end
 
   def score
-    Event::ACTION_SCORE_MAP[action]
+    ACTION_SCORE_MAP.fetch(action, 0)
   end
 end
